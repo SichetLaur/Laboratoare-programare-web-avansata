@@ -1,0 +1,12 @@
+{
+  "name": "lab3",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:server": "bun run --filter server dev",
+    "dev:web": "bun run --filter web dev"
+  }
+}
