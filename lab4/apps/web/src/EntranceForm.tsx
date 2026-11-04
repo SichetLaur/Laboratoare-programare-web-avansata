@@ -1,0 +1,99 @@
+// apps/web/src/EntranceForm.tsx — a controlled form, validated by the shared schema
+import {
+  type Building,
+  type Entrance,
+  fieldErrors,
+  NewEntrance,
+} from "@office/shared";
+import { type FormEvent, useState } from "react";
+
+type Errors = Partial<Record<string, string[]>>;
+
+export function EntranceForm({
+  api,
+  buildings,
+  onCreated,
+}: {
+  api: string;
+  buildings: Building[];
+  onCreated: (entrance: Entrance) => void;
+}) {
+  const [buildingId, setBuildingId] = useState("");
+  const [address, setAddress] = useState("");
+  const [floors, setFloors] = useState("");
+  const [hasElevator, setHasElevator] = useState(false);
+  const [errors, setErrors] = useState<Errors>({});
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault(); // no page reload: React handles the submit
+    // the server's schema, run before anything leaves the browser
+    const result = NewEntrance.safeParse({
+      address,
+      buildingId: Number(buildingId), // "" → 0 → "Pick a building"
+      floors: Number(floors),
+      hasElevator,
+    });
+    if (!result.success) {
+      setErrors(fieldErrors(result.error));
+      return;
+    }
+    setErrors({});
+    const res = await fetch(`${api}/api/entrances`, {
+      body: JSON.stringify(result.data),
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      setErrors(data.errors);
+      return;
+    }
+    onCreated(data);
+    setAddress("");
+    setFloors("");
+    setHasElevator(false);
+  }
+
+  return (
+    <form noValidate onSubmit={handleSubmit}>
+      <label>
+        Building
+        <select
+          onChange={(e) => setBuildingId(e.target.value)}
+          value={buildingId}
+        >
+          <option value="">Pick a building…</option>
+          {buildings.map((building) => (
+            <option key={building.id} value={building.id}>
+              {building.name}, {building.city}
+            </option>
+          ))}
+        </select>
+      </label>
+      {errors.buildingId && <p className="error">{errors.buildingId[0]}</p>}
+      <label>
+        Address
+        <input onChange={(e) => setAddress(e.target.value)} value={address} />
+      </label>
+      {errors.address && <p className="error">{errors.address[0]}</p>}
+      <label>
+        Floors
+        <input
+          inputMode="numeric"
+          onChange={(e) => setFloors(e.target.value)}
+          value={floors}
+        />
+      </label>
+      {errors.floors && <p className="error">{errors.floors[0]}</p>}
+      <label>
+        <input
+          checked={hasElevator}
+          onChange={(e) => setHasElevator(e.target.checked)}
+          type="checkbox"
+        />
+        Has an elevator
+      </label>
+      <button type="submit">Add the entrance</button>
+    </form>
+  );
+}
