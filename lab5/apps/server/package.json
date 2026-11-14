@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "test": "NODE_ENV=test bun test",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "bun scripts/migrate.ts",
+    "db:seed": "bun scripts/seed.ts"
+  },
+  "dependencies": {
+    "hono": "^4.7.0",
+    "zod": "^3.24.0",
+    "drizzle-orm": "^0.45.0",
+    "@office/shared": "workspace:*",
+    "field-app-contract": "workspace:*"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.0",
+    "@types/bun": "latest",
+    "@types/node": "latest",
+    "typescript": "^5.7.0"
+  }
+}

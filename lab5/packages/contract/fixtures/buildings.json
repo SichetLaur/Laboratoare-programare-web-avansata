@@ -1,0 +1,44 @@
+[
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "label": "Lipscani 12",
+    "comment": "Historic building in the old town",
+    "createdAt": "2026-01-15T10:00:00Z",
+    "updatedAt": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "label": "Calea Victoriei 45",
+    "comment": null,
+    "createdAt": "2026-02-01T08:00:00Z",
+    "updatedAt": "2026-02-01T08:00:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "label": "Bulevardul Magheru 7",
+    "comment": "Near the metro station",
+    "createdAt": "2026-02-15T12:00:00Z",
+    "updatedAt": "2026-02-15T12:00:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440004",
+    "label": "Strada Dionisie Lupu 3",
+    "comment": null,
+    "createdAt": "2026-03-01T09:00:00Z",
+    "updatedAt": "2026-03-01T09:00:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440005",
+    "label": "Calea Dorobanti 100",
+    "comment": "Residential block",
+    "createdAt": "2026-03-15T11:00:00Z",
+    "updatedAt": "2026-03-15T11:00:00Z"
+  },
+  {
+    "id": "550e8400-e29b-41d4-a716-446655440006",
+    "label": "Strada Academiei 20",
+    "comment": null,
+    "createdAt": "2026-04-01T14:00:00Z",
+    "updatedAt": "2026-04-01T14:00:00Z"
+  }
+]

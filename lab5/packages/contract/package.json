@@ -1,0 +1,18 @@
+{
+  "name": "field-app-contract",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./contract.ts",
+  "types": "./contract.ts",
+  "exports": {
+    "./contract": "./contract.ts",
+    "./fixtures/*": "./fixtures/*"
+  },
+  "dependencies": {
+    "zod": "^3.24.0"
+  },
+  "scripts": {
+    "test": "bun test"
+  }
+}
