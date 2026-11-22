@@ -1,0 +1,28 @@
+{
+  "name": "office",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "check": "ultracite check",
+    "db:generate": "bun run --filter server db:generate",
+    "db:migrate": "bun run --filter server db:migrate",
+    "db:seed": "bun run --filter server db:seed",
+    "dev": "turbo run dev",
+    "dev:server": "bun run --filter server dev",
+    "dev:web": "bun run --filter web dev",
+    "fix": "ultracite fix",
+    "prepare": "husky",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "husky": "^9.1.7",
+    "turbo": "2.11.10",
+    "ultracite": "8.0.1"
+  },
+  "packageManager": "bun@1.4.4"
+}
